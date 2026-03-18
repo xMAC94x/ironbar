@@ -1,14 +1,18 @@
+mod ext_workspace;
 mod macros;
 mod wl_output;
 mod wl_seat;
-mod ext_workspace;
 
 use crate::error::{ERR_CHANNEL_RECV, ExitCode};
-use crate::{arc_mut, delegate_workspace_group_handle, delegate_workspace_handle, delegate_workspace_manager, lock, register_client, spawn, spawn_blocking};
+use crate::{
+    arc_mut, delegate_workspace_group_handle, delegate_workspace_handle,
+    delegate_workspace_manager, lock, register_client, spawn, spawn_blocking,
+};
 use std::process::exit;
 use std::sync::{Arc, Mutex};
 
 use crate::channels::SyncSenderExt;
+use crate::clients::wayland::ext_workspace::manager::WorkspaceManagerState;
 use calloop_channel::Event::Msg;
 use cfg_if::cfg_if;
 use smithay_client_toolkit::output::OutputState;
@@ -27,7 +31,6 @@ use tracing::{debug, error, trace};
 use wayland_client::globals::{BindError, registry_queue_init};
 use wayland_client::{Connection, QueueHandle};
 pub use wl_output::{OutputEvent, OutputEventType};
-use crate::clients::wayland::ext_workspace::manager::WorkspaceManagerState;
 
 cfg_if! {
     if #[cfg(any(feature = "focused", feature = "launcher"))] {

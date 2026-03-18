@@ -2,7 +2,9 @@ use super::manager::WorkspaceManagerState;
 use std::sync::{Arc, Mutex};
 use tracing::error;
 use wayland_client::{Connection, Dispatch, QueueHandle};
-use wayland_protocols::ext::workspace::v1::client::ext_workspace_group_handle_v1::{ExtWorkspaceGroupHandleV1, Event};
+use wayland_protocols::ext::workspace::v1::client::ext_workspace_group_handle_v1::{
+    Event, ExtWorkspaceGroupHandleV1,
+};
 
 #[derive(Debug, Clone)]
 pub struct WorkspaceGroupHandle {

@@ -76,9 +76,7 @@ impl WorkspaceHandleDataExt for WorkspaceHandleData {
     }
 }
 
-pub trait WorkspaceHandleHandler: Sized {
-
-}
+pub trait WorkspaceHandleHandler: Sized {}
 
 impl<D, U> Dispatch<ExtWorkspaceHandleV1, U, D> for WorkspaceManagerState
 where
